@@ -1,4 +1,4 @@
-package cn.org.hentai.client;
+package cn.org.hentai.server;
 
 import cn.org.hentai.common.Configs;
 import cn.org.hentai.common.Log;
@@ -6,12 +6,12 @@ import cn.org.hentai.common.Log;
 /**
  * Created by matrixy on 2018/4/3.
  */
-public class ClientApp
+public class ServerApp
 {
     public static void main(String[] args) throws Exception
     {
-        Configs.init("/client.properties");
+        Configs.init("/server.properties");
         new TranscodeServer().start();
-        Log.debug("Middleman client started on: " + Configs.getInt("local.listen.port", 64161));
+        Log.debug("Middleman server started on: " + Configs.getInt("server.listen.port", 64035));
     }
 }

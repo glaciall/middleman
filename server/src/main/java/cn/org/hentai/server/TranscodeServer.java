@@ -1,4 +1,4 @@
-package cn.org.hentai.client;
+package cn.org.hentai.server;
 
 import cn.org.hentai.common.Configs;
 import cn.org.hentai.common.Log;
@@ -14,7 +14,7 @@ public class TranscodeServer extends Thread
 {
     private void listen() throws Exception
     {
-        ServerSocket server = new ServerSocket(Configs.getInt("local.listen.port", 64161), 100, InetAddress.getByName("0.0.0.0"));
+        ServerSocket server = new ServerSocket(Configs.getInt("server.listen.port", 64035), 100, InetAddress.getByName("0.0.0.0"));
         while (true)
         {
             Socket conn = server.accept();

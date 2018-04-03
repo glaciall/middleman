@@ -98,4 +98,12 @@ public final class ByteUtils
         }
         return buff;
     }
+
+    public static boolean compare(byte[] data1, byte[] data2)
+    {
+        if (data1.length != data2.length) return false;
+        for (int i = 0; i < data1.length; i++)
+            if ((data1[i] & 0xff) != (data2[i] & 0xff)) return false;
+        return true;
+    }
 }

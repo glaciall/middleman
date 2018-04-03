@@ -43,7 +43,7 @@ public final class Packet
         return create(DES.encrypt(data, key));
     }
 
-    private static byte[] create(byte[] data) throws Exception
+    public static byte[] create(byte[] data) throws Exception
     {
         return ByteUtils.concat(HEADER, ByteUtils.toBytes(data.length), data);
     }
@@ -57,10 +57,15 @@ public final class Packet
     // fa fa fa 00 00 00 04 00 00 00 00
     //                      加密后的数据体
 
-    // 读取一整个数据包
-    public static byte[] readEncryptedPacket(InputStream inputStream) throws IOException
+    /**
+     * 读取一整个数据包，不考虑有无加密
+     * @param inputStream
+     * @return
+     * @throws Exception
+     */
+    public static byte[] readPacket(InputStream inputStream) throws Exception
     {
-        if (inputStream.available() < 7) return null;
+        while (inputStream.available() < 7) Thread.sleep(1);
         byte[] head = new byte[7];
         inputStream.read(head);
         if ((head[0] & 0xff) != 0xfa || (head[1] & 0xff) != 0xfa || (head[2] & 0xff) != 0xfa) throw new RuntimeException("错误的协议头");
