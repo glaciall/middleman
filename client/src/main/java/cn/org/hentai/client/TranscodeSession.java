@@ -65,7 +65,7 @@ public class TranscodeSession extends Thread
                 // 服务器端到本地，需要解密后转发
                 Transcoder.decryptAndTransfer(serverIS, clientOS, serverBufLength, key);
             }
-            if (serverBufLength + clientBufLength == 0) Thread.sleep(1);
+            if (serverBufLength + clientBufLength == 0) Thread.sleep(5);
             else lastActiveTime = System.currentTimeMillis();
             if (System.currentTimeMillis() - lastActiveTime > idleTimeout)
             {
